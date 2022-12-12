@@ -1,12 +1,15 @@
+//counters (fields)
 var player = 0;
 var computer = 0;
 
+//computer decider
 function computerPlay() {
     const hands = ["rock", "paper", "scissors"];
 
     const random = Math.floor(Math.random() * hands.length);
     return (random, hands[random]);
 }
+//Play a round
 function playRound(playerSelection, computerSelection) {
     if (playerSelection == "rock" && computerSelection == "scissors") {
         player++;
@@ -39,31 +42,41 @@ function playRound(playerSelection, computerSelection) {
 
     }
     else {
+
         return "Tie game! You both selected " + playerSelection;
     }
 }
-
-
-//asdlkflasjdlkfjlaksjdf
-function game() {
-
-    for (i = 0; i < 5; i++) {
-        const userInput = prompt("rock, paper, or scissors?");
-        const playerSelection = userInput.toLowerCase();
-        const computerSelection = computerPlay();
-        console.log(playRound(playerSelection, computerSelection));
-    }
-    if (player > computer) {
-        console.log("You won!");
-    }
-    else if (player < computer) {
-        console.log("LOSER!");
-    }
-    else {
-        console.log("You tied!");
-    }
-    console.log("Score");
-    console.log("You: " + player);
-    console.log("Computer: " + computer);
+//rock button
+function myRockFunction() {
+    const computerSelection = computerPlay();
+    console.log(playRound("rock", computerSelection));
+    game();
 }
-game();
+//paper button
+function myPaperFunction() {
+    const computerSelection1 = computerPlay();
+    console.log(playRound("paper", computerSelection1));   
+    game();     
+}
+//scissor button
+function myScissorsFunction() {
+    const computerSelection2 = computerPlay();
+    console.log(playRound("scissors", computerSelection2));  
+    game();      
+}
+//update display
+function game() {
+    //update player total
+    document.getElementById("player").innerHTML = player;
+    //update computer total
+    document.getElementById("computer").innerHTML = computer;
+
+        
+    //declare the winner
+    if (player == 5) {
+        document.getElementById("winner").innerHTML = "player";
+    }
+    else if (computer == 5) {
+        document.getElementById("winner").innerHTML = "computer";
+    }
+}
